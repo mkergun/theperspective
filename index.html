@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Perspective — Talk to History's Greatest Minds</title>
+<meta name="description" content="Have real conversations with Einstein, Cleopatra, Mandela, Napoleon and 23 more historical legends. Powered by AI, grounded in history."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0e0c09;--parchment:#f7f3ec;--gold:#c9a84c;--gold-light:#e8d5a3;
+  --muted:#7a7060;--border:rgba(14,12,9,0.12);--white:#ffffff;
+}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--parchment);color:var(--ink);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(247,243,236,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:"Cormorant Garamond",serif;font-size:1.4rem;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.nav-logo em{font-style:italic;color:var(--gold)}
+.nav-cta{background:var(--ink);color:var(--parchment);padding:9px 22px;border-radius:4px;font-size:.82rem;font-weight:500;text-decoration:none;letter-spacing:.05em;transition:background .2s}
+.nav-cta:hover{background:#2a2620}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.08) 0%,transparent 70%)}
+.hero-kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;margin-bottom:1.5rem;max-width:900px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero h1 strong{font-weight:600}
+.hero-sub{font-size:1.1rem;color:var(--muted);line-height:1.8;max-width:540px;margin:0 auto 3rem;font-weight:300;opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s .8s forwards}
+.btn-primary{background:var(--ink);color:var(--parchment);padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:500;text-decoration:none;letter-spacing:.04em;transition:all .2s;border:none;cursor:pointer}
+.btn-primary:hover{background:#2a2620;transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--ink);padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:500;text-decoration:none;letter-spacing:.04em;border:1px solid var(--border);transition:all .2s}
+.btn-secondary:hover{border-color:var(--ink)}
+.hero-note{font-size:.78rem;color:var(--muted);margin-top:1.25rem;opacity:0;animation:fadeUp .8s 1s forwards}
+
+/* FACES STRIP */
+.faces{padding:3rem 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:white;position:relative}
+.faces::before,.faces::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2}
+.faces::before{left:0;background:linear-gradient(to right,white,transparent)}
+.faces::after{right:0;background:linear-gradient(to left,white,transparent)}
+.faces-track{display:flex;gap:2rem;animation:scroll 35s linear infinite;width:max-content}
+.face-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;flex-shrink:0}
+.face-av{width:60px;height:60px;border-radius:50%;background:var(--ink);overflow:hidden;border:2px solid var(--border)}
+.face-av img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(20%)}
+.face-name{font-size:.72rem;color:var(--muted);white-space:nowrap;font-weight:500}
+
+/* FEATURES */
+.features{padding:7rem 2rem;max-width:1100px;margin:0 auto}
+.section-eye{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1rem;text-align:center}
+.section-h{font-family:"Cormorant Garamond",serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;text-align:center;margin-bottom:1rem;line-height:1.15}
+.section-h em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:1rem;color:var(--muted);text-align:center;max-width:500px;margin:0 auto 5rem;line-height:1.8;font-weight:300}
+.feats{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;background:var(--border)}
+.feat{background:var(--parchment);padding:2.5rem;transition:background .2s}
+.feat:hover{background:white}
+.feat-icon{font-size:2rem;margin-bottom:1.25rem}
+.feat-title{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600;margin-bottom:.75rem;color:var(--ink)}
+.feat-body{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* PERSONAS SHOWCASE */
+.showcase{padding:6rem 2rem;background:var(--ink);color:var(--parchment)}
+.showcase-inner{max-width:1100px;margin:0 auto}
+.showcase .section-eye{color:rgba(201,168,76,.7)}
+.showcase .section-h{color:var(--parchment)}
+.showcase .section-h em{color:var(--gold)}
+.showcase .section-sub{color:rgba(247,243,236,.5)}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:rgba(255,255,255,.08);margin-top:4rem}
+.persona-item{background:var(--ink);padding:1.5rem 1rem;text-align:center;transition:background .2s;cursor:pointer}
+.persona-item:hover{background:#1a1710}
+.persona-av{width:60px;height:60px;border-radius:50%;overflow:hidden;margin:0 auto .75rem;border:1px solid rgba(255,255,255,.15)}
+.persona-av img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(30%)}
+.persona-name{font-family:"Cormorant Garamond",serif;font-size:.95rem;color:var(--parchment);font-weight:400}
+.persona-era{font-size:.68rem;color:rgba(247,243,236,.4);margin-top:2px}
+
+/* QUOTE */
+.quote-section{padding:7rem 2rem;text-align:center;max-width:800px;margin:0 auto}
+.quote-mark{font-family:"Cormorant Garamond",serif;font-size:6rem;line-height:.5;color:var(--gold-light);display:block;margin-bottom:1rem}
+.quote-text{font-family:"Cormorant Garamond",serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;font-style:italic;line-height:1.5;color:var(--ink);margin-bottom:2rem}
+.quote-attr{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+
+/* PRICING */
+.pricing{padding:7rem 2rem;background:white}
+.pricing-inner{max-width:900px;margin:0 auto}
+.pricing-cards{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin-top:4rem}
+@media(max-width:600px){.pricing-cards{grid-template-columns:1fr}}
+.pcard{background:var(--parchment);padding:2.5rem}
+.pcard.featured{background:var(--ink);color:var(--parchment)}
+.pcard-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.pcard.featured .pcard-label{color:rgba(247,243,236,.5)}
+.pcard-price{font-family:"Cormorant Garamond",serif;font-size:3.5rem;font-weight:300;line-height:1;margin-bottom:.25rem}
+.pcard-price span{font-size:1rem;font-family:"DM Sans",sans-serif;font-weight:400;color:var(--muted)}
+.pcard.featured .pcard-price span{color:rgba(247,243,236,.5)}
+.pcard-period{font-size:.8rem;color:var(--muted);margin-bottom:2rem}
+.pcard.featured .pcard-period{color:rgba(247,243,236,.5)}
+.pcard-features{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2.5rem}
+.pcard-features li{font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.pcard.featured .pcard-features li{color:rgba(247,243,236,.7)}
+.pcard-features li::before{content:"✓";color:var(--gold);font-weight:700;flex-shrink:0}
+.pcard-btn{display:block;text-align:center;padding:12px;border-radius:4px;font-size:.85rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:all .2s;border:1px solid var(--border)}
+.pcard-btn:hover{transform:translateY(-1px)}
+.pcard.featured .pcard-btn{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.pcard-btn:not(.featured .pcard-btn){background:var(--ink);color:var(--parchment);border-color:var(--ink)}
+
+/* EMAIL CAPTURE */
+.capture{padding:7rem 2rem;text-align:center;background:var(--parchment)}
+.capture h2{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:1rem}
+.capture h2 em{font-style:italic;color:var(--gold)}
+.capture p{font-size:1rem;color:var(--muted);margin-bottom:2.5rem;font-weight:300}
+.email-form{display:flex;gap:0;max-width:440px;margin:0 auto;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:white}
+.email-form input{flex:1;padding:.85rem 1.25rem;border:none;outline:none;font-family:"DM Sans",sans-serif;font-size:.9rem;color:var(--ink);background:white}
+.email-form button{padding:.85rem 1.5rem;background:var(--ink);color:var(--parchment);border:none;cursor:pointer;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.04em;white-space:nowrap;transition:background .2s}
+.email-form button:hover{background:#2a2620}
+.capture-note{font-size:.75rem;color:var(--muted);margin-top:.75rem}
+.success-msg{display:none;font-size:.9rem;color:#2e7d32;margin-top:1rem}
+
+/* FOOTER */
+footer{padding:3rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:600;color:var(--ink)}
+.footer-logo em{font-style:italic;color:var(--gold)}
+.footer-note{font-size:.78rem;color:var(--muted)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">The <em>Perspective</em></div>
+  <a href="app.html" class="nav-cta">Try it free →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-kicker">27 historical legends · AI-powered · Historically grounded</div>
+  <h1>What would <em>Einstein</em><br>tell you to do?</h1>
+  <p class="hero-sub">Have real conversations with history's greatest minds. Ask Einstein about creativity, debate Napoleon on leadership, seek wisdom from Marcus Aurelius. Each voice grounded in their actual words and documented beliefs.</p>
+  <div class="hero-actions">
+    <a href="app.html" class="btn-primary">Try it free →</a>
+    <a href="#features" class="btn-secondary">See how it works</a>
+  </div>
+  <p class="hero-note">7-day free trial · No credit card required · Then $12/month</p>
+</section>
+
+<div class="faces">
+  <div class="faces-track" id="faces-track"></div>
+</div>
+
+<section class="features" id="features">
+  <div class="section-eye reveal">What you can do</div>
+  <h2 class="section-h reveal">Three ways to talk to <em>history</em></h2>
+  <p class="section-sub reveal">Every conversation is grounded in verified historical quotes, documented beliefs, and real biographical events.</p>
+  <div class="feats reveal">
+    <div class="feat">
+      <div class="feat-icon">💬</div>
+      <div class="feat-title">One-on-one chat</div>
+      <p class="feat-body">Pick any legend and have a multi-turn conversation. Ask anything — from their greatest regrets to what they'd do in your situation. Each persona stays true to their documented voice.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">⚔️</div>
+      <div class="feat-title">Debate arena</div>
+      <p class="feat-body">Set two historical figures against each other on any topic. Einstein vs. Nietzsche on free will. Churchill vs. Gandhi on resistance. Pick the topic, steer the argument, watch history clash.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🧭</div>
+      <div class="feat-title">Council of legends</div>
+      <p class="feat-body">Share a decision or dilemma. Get simultaneous advice from four historical minds — your personal board of the greatest thinkers who ever lived. Parallel responses, one screen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="showcase-inner">
+    <div class="section-eye reveal">The cast</div>
+    <h2 class="section-h reveal">27 minds. Every era. <em>Every field.</em></h2>
+    <p class="section-sub reveal">Scientists, emperors, artists, philosophers, revolutionaries. More added every month.</p>
+    <div class="persona-grid reveal" id="persona-grid"></div>
+  </div>
+</section>
+
+<section class="quote-section reveal">
+  <span class="quote-mark">"</span>
+  <p class="quote-text">The unexamined life is not worth living.</p>
+  <div class="quote-attr">— Socrates, 399 BC · As relevant today as ever</div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-eye reveal">Pricing</div>
+    <h2 class="section-h reveal">Simple, honest <em>pricing</em></h2>
+    <p class="section-sub reveal">Start free. Upgrade when you're hooked.</p>
+    <div class="pricing-cards reveal">
+      <div class="pcard">
+        <div class="pcard-label">Free Trial</div>
+        <div class="pcard-price">$0</div>
+        <div class="pcard-period">for 7 days — no card needed</div>
+        <ul class="pcard-features">
+          <li>Full access for 7 days</li>
+          <li>All 27 personas</li>
+          <li>Chat, Debate & Council modes</li>
+          <li>Save & export transcripts</li>
+          <li>No credit card required</li>
+        </ul>
+        <a href="app.html" class="pcard-btn">Start free trial</a>
+      </div>
+      <div class="pcard featured">
+        <div class="pcard-label">Pro</div>
+        <div class="pcard-price">$12<span>/mo</span></div>
+        <div class="pcard-period">after your free trial</div>
+        <ul class="pcard-features">
+          <li>Unlimited conversations</li>
+          <li>All 27 personas + new monthly</li>
+          <li>Chat, Debate & Council modes</li>
+          <li>Save & export transcripts</li>
+          <li>Priority response speed</li>
+        </ul>
+        <a href="app.html" class="pcard-btn">Start free trial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="capture" id="early-access">
+  <h2>Be first when we <em>launch</em></h2>
+  <p>Join the waitlist. We'll send you early access — free Pro trial included.</p>
+  <div class="email-form">
+    <input type="email" id="email-inp" placeholder="your@email.com"/>
+    <button onclick="joinWaitlist()">Join waitlist</button>
+  </div>
+  <p class="capture-note">No spam. Just a single email when we launch.</p>
+  <p class="success-msg" id="success-msg">✓ You're on the list. We'll be in touch.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">The <em>Perspective</em></div>
+  <div class="footer-note">theperspective.app · Powered by Claude AI · © 2026</div>
+</footer>
+
+<script>
+var PEOPLE = [
+  {name:"Albert Einstein",era:"Physicist",bg:"#4a6fa5",img:"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQAD4DASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAQADBAYHBQL/xAAtEAACAQMEAQMCBgMAAAAAAAABAgMABBEFEiExBhNBIlFhFjJCcYGRktH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIEAwX/xAAeEQEAAgICAwAAAAAAAAAAAAAAARECITFBElFh/9oADAMBAAIRAxEAPwDQYpLdJI4kaNFEiTTFxl15d2PBz/j86T6jbAR2jPJC0zl5PlFOWBj7EbHGBgDn+8aVvCbdorlpfqfmJzw3r0GMcnkjPA8VrT3ZhaSSSFzL1Bt4EZP5UDjP3zn79q5dWq6j8VKSjqILiGaCON4pgVZJVlVlTqcNlcnGBx+9Q3V3LcMPzZFiBU7RsVDEg9R5J7jjPPGas3rSW0TJHbJHCiDp6jyexA5yDxjj0/avbpYUmLRiGOWB3KkLGSP9c5wDweOD5wAM0xJTdZaF0kp1U5VEJbkdj4GePelY7eSSGKR5VeORckOo6h6A+B9sA+aiuriVYWV4xIEDDkjG2MAE+TwMAk+KkGXqFJepY1Zj8rY5GMDHbgcD/tRqRmaqN0u1tcyWsZiEbhBlRGxVcc4IHnH2qS9/aWyBYCqSEkE9vUcDnn+KraKzjMrAiJhKBKo5/LkYz9x/wBqSz8W16E42gEDtnWFR19wBz/fNXUoye3HBqRZ0n5pTJIUDElFBON+3Y+3bv5pSUJI6jGMqFB7Kuc598celU5LphVJGM9jWF0rRxZGemTWRW5oUAA4HelXXgV6VAcfQBKT07jFGmrSZ57I4UZLEgcV0LpWVblSuJN28j2pWRjLqvqDjqoFe1y9kFIBPJI70Rqmb/9k="},
+  {name:"Cleopatra VII",era:"Pharaoh",bg:"#8B6914",img:""},
+  {name:"Marie Curie",era:"Scientist",bg:"#2d6a4f",img:""},
+  {name:"Nelson Mandela",era:"Leader",bg:"#0e7490",img:""},
+  {name:"Marcus Aurelius",era:"Emperor",bg:"#78560a",img:""},
+  {name:"Nikola Tesla",era:"Inventor",bg:"#1a3a5c",img:""},
+  {name:"Napoleon",era:"Emperor",bg:"#1a2a4a",img:""},
+  {name:"Winston Churchill",era:"PM",bg:"#2a2a2a",img:""},
+  {name:"Shakespeare",era:"Playwright",bg:"#3a2a1a",img:""},
+  {name:"Frida Kahlo",era:"Artist",bg:"#6b2737",img:""},
+  {name:"Socrates",era:"Philosopher",bg:"#6a5a3a",img:""},
+  {name:"Friedrich Nietzsche",era:"Philosopher",bg:"#1a1a2a",img:""},
+  {name:"Mahatma Gandhi",era:"Leader",bg:"#4a3a1a",img:""},
+  {name:"Joan of Arc",era:"Warrior",bg:"#3a2a4a",img:""},
+  {name:"Malcolm X",era:"Activist",bg:"#1a1a1a",img:""},
+];
+
+// Build scrolling faces
+var track = document.getElementById("faces-track");
+var doubled = PEOPLE.concat(PEOPLE);
+doubled.forEach(function(p){
+  var item = document.createElement("div"); item.className="face-item";
+  var av = document.createElement("div"); av.className="face-av"; av.style.background=p.bg;
+  if(p.img){var img=document.createElement("img");img.src=p.img;img.alt=p.name;img.onerror=function(){img.remove();};av.appendChild(img);}
+  var name = document.createElement("div"); name.className="face-name"; name.textContent=p.name.split(" ").pop();
+  item.append(av,name); track.appendChild(item);
+});
+
+// Build persona grid in showcase
+var pgrid = document.getElementById("persona-grid");
+var ALL_PERSONAS = [
+  {name:"Albert Einstein",era:"1879–1955",bg:"#4a6fa5"},
+  {name:"Steve Jobs",era:"1955–2011",bg:"#2a2a2a"},
+  {name:"Cleopatra VII",era:"69–30 BC",bg:"#8B6914"},
+  {name:"Marie Curie",era:"1867–1934",bg:"#2d6a4f"},
+  {name:"Abraham Lincoln",era:"1809–1865",bg:"#3d2b5e"},
+  {name:"Leonardo da Vinci",era:"1452–1519",bg:"#7a3b1e"},
+  {name:"Nelson Mandela",era:"1918–2013",bg:"#0e7490"},
+  {name:"Marcus Aurelius",era:"121–180 AD",bg:"#78560a"},
+  {name:"Nikola Tesla",era:"1856–1943",bg:"#1a3a5c"},
+  {name:"Sigmund Freud",era:"1856–1939",bg:"#4a3728"},
+  {name:"Charles Darwin",era:"1809–1882",bg:"#2d4a1e"},
+  {name:"Stephen Hawking",era:"1942–2018",bg:"#0a2a4a"},
+  {name:"Napoleon Bonaparte",era:"1769–1821",bg:"#1a2a4a"},
+  {name:"Winston Churchill",era:"1874–1965",bg:"#2a2a2a"},
+  {name:"Julius Caesar",era:"100–44 BC",bg:"#5a4a2a"},
+  {name:"Shakespeare",era:"1564–1616",bg:"#3a2a1a"},
+  {name:"Frida Kahlo",era:"1907–1954",bg:"#6b2737"},
+  {name:"Beethoven",era:"1770–1827",bg:"#2a1a0a"},
+  {name:"Oscar Wilde",era:"1854–1900",bg:"#2a3a2a"},
+  {name:"Socrates",era:"470–399 BC",bg:"#6a5a3a"},
+  {name:"Nietzsche",era:"1844–1900",bg:"#1a1a2a"},
+  {name:"Confucius",era:"551–479 BC",bg:"#5a3a1a"},
+  {name:"Simone de Beauvoir",era:"1908–1986",bg:"#3a2a3a"},
+  {name:"Mahatma Gandhi",era:"1869–1948",bg:"#4a3a1a"},
+  {name:"Joan of Arc",era:"1412–1431",bg:"#3a2a4a"},
+  {name:"Malcolm X",era:"1925–1965",bg:"#1a1a1a"},
+  {name:"Che Guevara",era:"1928–1967",bg:"#1a3a1a"},
+];
+ALL_PERSONAS.forEach(function(p){
+  var item=document.createElement("div");item.className="persona-item";
+  var av=document.createElement("div");av.className="persona-av";av.style.background=p.bg;
+  var fb=document.createElement("div");fb.style.cssText="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-family:Cormorant Garamond,serif;font-size:1.1rem;font-weight:600;";
+  fb.textContent=p.name.split(" ").map(function(w){return w[0];}).slice(0,2).join("");
+  av.appendChild(fb);
+  var nm=document.createElement("div");nm.className="persona-name";nm.textContent=p.name.split(" ").slice(-1)[0];
+  var era=document.createElement("div");era.className="persona-era";era.textContent=p.era;
+  item.append(av,nm,era);pgrid.appendChild(item);
+});
+
+// Reveal on scroll
+var reveals=document.querySelectorAll(".reveal");
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:0.1});
+reveals.forEach(function(el){observer.observe(el);});
+
+// Waitlist
+function joinWaitlist(){
+  var email=document.getElementById("email-inp").value.trim();
+  if(!email||!email.includes("@"))return;
+  document.getElementById("email-inp").value="";
+  document.querySelector(".email-form").style.display="none";
+  document.getElementById("success-msg").style.display="block";
+  // TODO: connect to your backend / Mailchimp / Resend
+  console.log("Waitlist signup:", email);
+}
+document.getElementById("email-inp").addEventListener("keydown",function(e){if(e.key==="Enter")joinWaitlist();});
+</script>
+</body>
+</html>
